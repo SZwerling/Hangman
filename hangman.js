@@ -32,13 +32,12 @@ Hangman.prototype.getPuzzle = function () {
 };
 
 const game1 = new Hangman("Cat", 2);
-game1.makeGuess("c");
-game1.makeGuess("c");
+console.log(game1.getPuzzle())
+console.log(game1.numGuesses)
 
-game1.makeGuess("a");
-game1.makeGuess("z");
-game1.makeGuess("p");
-console.log(game1.getPuzzle());
-const game2 = new Hangman("foot apparel", 200);
-game2.makeGuess('z')
-console.log(game2.numGuesses)
+window.addEventListener('keydown', function(e){
+    const guess = e.key
+    game1.makeGuess(guess)
+    console.log(game1.getPuzzle())
+    console.log(game1.numGuesses)
+})
