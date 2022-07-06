@@ -3,3 +3,4 @@ const product = {
 }
 
 console.log(product.hasOwnProperty('hasOwnProperty'))
+console.log('slim'.split('').findIndex(letter => letter === "i"))
