@@ -36,8 +36,11 @@ console.log(game1.getPuzzle())
 console.log(game1.numGuesses)
 
 window.addEventListener('keydown', function(e){
-    const guess = e.key
-    game1.makeGuess(guess)
-    console.log(game1.getPuzzle())
-    console.log(game1.numGuesses)
+   if(e.key.match(/^[a-z0-9 ]$/i)){
+      const guess = e.key
+      game1.makeGuess(guess)
+      console.log(game1.getPuzzle())
+      console.log(game1.numGuesses)
+   }
+  
 })
