@@ -1,10 +1,8 @@
-
-
-
 const Hangman = function (word, numGuesses) {
    this.word = word.toLowerCase().split("");
    this.numGuesses = numGuesses;
    this.guessed = [];
+   this.status = "playing"
 };
 
 Hangman.prototype.makeGuess = function (letter) {
@@ -15,6 +13,7 @@ Hangman.prototype.makeGuess = function (letter) {
          this.numGuesses--;              // if unique guess AND if incorrect guess
       }
    }
+   this.calculateStatus()
 };
 
 Hangman.prototype.getPuzzle = function () {
@@ -28,4 +27,18 @@ Hangman.prototype.getPuzzle = function () {
    });
    return puzzle;
 };
+
+Hangman.prototype.calculateStatus = function() {
+   let correct = this.word.every((letter) => {
+      return this.guessed.includes(letter)
+   })
+
+   if(this.numGuesses <= 0){
+      return this.status = "failed!"
+      } 
+
+   if(correct){
+      return this.status = "finished!"
+   }
+}
 
