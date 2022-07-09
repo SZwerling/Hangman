@@ -1,3 +1,10 @@
+// 1. Disable new guesses unless "playing."
+// 2. Set up a new method to return a status message.
+
+// Playing -- gusses left: x
+// Failed -- Nice try! the word was 'cat'.
+// Finished -- Great work! You guessed the word.
+
 const Hangman = function (word, numGuesses) {
    this.word = word.toLowerCase().split("");
    this.numGuesses = numGuesses;
@@ -6,6 +13,7 @@ const Hangman = function (word, numGuesses) {
 };
 
 Hangman.prototype.makeGuess = function (letter) {
+   if(this.status !== 'playing') return;
    letter = letter.toLowerCase();
    if (!this.guessed.includes(letter)) { // if unique guess, add to guessed array
       this.guessed.push(letter);
@@ -39,6 +47,16 @@ Hangman.prototype.calculateStatus = function() {
 
    if(correct){
       return this.status = "finished!"
+   }
+}
+
+Hangman.prototype.statusMessage = function() {
+   if(this.status === 'playing'){
+      return `Guesses left: ${this.numGuesses}`
+   } else if(this.status === 'failed!'){
+      return `Nice try! The word was "${this.word.join('')}."`
+   } else if(this.status === 'finished!') {
+      return `Great work! You guessed the word!`
    }
 }
 
