@@ -1,4 +1,4 @@
-const game1 = new Hangman("motorcycle", 3);
+const game1 = new Hangman("small minded", 3);
 const puzzleEl = this.document.querySelector("#word");
 const messageEl = this.document.querySelector("#message");
 

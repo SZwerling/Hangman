@@ -31,7 +31,7 @@ class Hangman {
    }
    calculateStatus() {
       let correct = this.word.every((letter) => {
-         return this.guessed.includes(letter);
+         return this.guessed.includes(letter) || letter === " ";
       });
    
       if (this.numGuesses <= 0) {
