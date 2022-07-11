@@ -18,7 +18,7 @@ class Hangman {
       }
       this.calculateStatus();
    }
-   getPuzzle(){
+   get puzzle(){ // of getters and setters chapter
       let puzzle = "";
       this.word.forEach((letter) => {
          if (this.guessed.includes(letter) || letter === " ") {
@@ -42,7 +42,7 @@ class Hangman {
          return (this.status = "finished!");
       }
    }
-   statusMessage = function () {
+   get statusMessage() { // of getters and setters chapter
       if (this.status === "playing") {
          return `Guesses left: ${this.numGuesses}`;
       } else if (this.status === "failed!") {
