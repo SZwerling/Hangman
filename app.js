@@ -29,3 +29,17 @@ request.addEventListener('readystatechange', (e) => {
       console.log(`An error has taken place.`)
    }
 })
+
+// Country code and whatnot
+const request2 = new XMLHttpRequest()
+request2.open('GET', 'https://restcountries.com/v3.1/all')
+request2.send()
+request2.addEventListener('readystatechange', (e) => {
+   if(e.target.readyState === 4 && e.target.status === 200){
+      const data = JSON.parse(e.target.responseText)
+      const mex = data.find((country) => country.altSpellings[0] === 'MX')
+      console.log(mex.name.official)
+   } else if(e.target.readyState === 4){
+      console.log(`An error has taken place`)
+   }
+})
