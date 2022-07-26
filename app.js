@@ -14,7 +14,7 @@ window.addEventListener("keydown", function (e) {
    }
 });
 
-getPuzzle((error, puzzle) => {
+getPuzzle("2", (error, puzzle) => {
    // we are calling this function with the first and only arg being a callback function
    if (error) {
       console.log(`Error: ${error}`)

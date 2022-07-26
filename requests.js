@@ -1,8 +1,8 @@
-const getPuzzle = function (callback) {
+const getPuzzle = function (wordCount, callback) {
    // this function takes one arg, that arg is a function
 
    const request = new XMLHttpRequest();
-   request.open("GET", "http://puzzle.mead.io/puzzle");
+   request.open("GET", `http://puzzle.mead.io/puzzle?wordCount=${wordCount}`);
    request.send();
    request.addEventListener("readystatechange", (e) => {
       if (e.target.readyState === 4 && e.target.status === 200) {
