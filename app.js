@@ -14,14 +14,11 @@ window.addEventListener("keydown", function (e) {
    }
 });
 
-getPuzzle("2", (error, puzzle) => {
-   // we are calling this function with the first and only arg being a callback function
-   if (error) {
-      console.log(`Error: ${error}`)
-   } else {
-      console.log(puzzle);
-   }
-});
+getPuzzle('2').then((puzzle) => {
+   console.log(puzzle)
+}, (err) => {
+   console.log(`Erro: ${err}`)
+}) 
 
 getCountry('MX', (error, country) => {
    if(error){
