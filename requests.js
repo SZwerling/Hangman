@@ -16,7 +16,7 @@ const getPuzzle = (wordCount) => new Promise((resolve, reject) => {
 
 // Making an http request
 
-const getCountry = function (code, callback) {
+const getCountry = (code) => new Promise((resolve, reject) => {
    const request2 = new XMLHttpRequest();
    request2.open("GET", "https://restcountries.com/v3.1/all");
    request2.send();
@@ -24,12 +24,12 @@ const getCountry = function (code, callback) {
       if (e.target.readyState === 4 && e.target.status === 200) {
          const data = JSON.parse(e.target.responseText);
          const specCountry = data.find((country) => country.altSpellings[0] === code);
-         callback(undefined, specCountry);
+         resolve(specCountry);
       } else if (e.target.readyState === 4) {
-         callback(`an error has taken place:  ${e.target.responseText}`);
+         reject(`an error has taken place:  ${e.target.responseText}`);
       }
    });
-};
+})
 
 
 

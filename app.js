@@ -17,13 +17,11 @@ window.addEventListener("keydown", function (e) {
 getPuzzle('2').then((puzzle) => {
    console.log(puzzle)
 }, (err) => {
-   console.log(`Erro: ${err}`)
+   console.log(`Error: ${err}`)
 }) 
 
-getCountry('MX', (error, country) => {
-   if(error){
-      console.log(`error: ${error}`)
-   } else {
-      console.log(country.altSpellings[2])
-   }
+getCountry('US').then((country) => {
+   console.log(country.altSpellings[2])
+}, (err) => {
+   console.log(`Error; ${err}`)
 })
