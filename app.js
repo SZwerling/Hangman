@@ -25,3 +25,9 @@ getCountry('US').then((country) => {
 }, (err) => {
    console.log(`Error; ${err}`)
 })
+
+getSuggestion().then((suggestion) => {
+   console.log(`Suggestion: ${suggestion.activity}.`)
+}, (err) => {
+   console.log(err)
+})

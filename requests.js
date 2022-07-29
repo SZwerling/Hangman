@@ -31,6 +31,20 @@ const getCountry = (code) => new Promise((resolve, reject) => {
    });
 })
 
+const getSuggestion = () => new Promise((resolve, reject) => {
+   const request = new XMLHttpRequest();
+   request.open("GET", "http://www.boredapi.com/api/activity");
+   request.send();
+   request.addEventListener("readystatechange", (e) => {
+      if(e.target.readyState === 4 && e.target.status === 200){
+         const data = JSON.parse(e.target.responseText);
+         resolve(data)
+      } else if(e.target.readyState === 4){
+         reject(`an error has taken place: ${e.target.responseText}`)
+      }
+   }) 
+})
+
 
 
 
