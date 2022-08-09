@@ -26,8 +26,20 @@ getCountry('US').then((country) => {
    console.log(`Error; ${err}`)
 })
 
-getSuggestion().then((suggestion) => {
-   console.log(`Suggestion: ${suggestion.activity}.`)
-}, (err) => {
+// getSuggestion().then((suggestion) => {
+//    console.log(`Suggestion: ${suggestion.activity}.`)
+// }, (err) => {
+//    console.log(err)
+// })
+
+fetch('http://www.boredapi.com/api/activity', {}).then((response) => {
+   if(response.status === 200){
+      return response.json()
+   } else {
+      throw new Error('Unable to fetch the puzzle')
+   }
+}).then((data) => {
+   console.log(data.activity)
+}).catch((err) => {
    console.log(err)
 })
