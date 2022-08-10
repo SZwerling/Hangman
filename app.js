@@ -16,8 +16,8 @@ window.addEventListener("keydown", function (e) {
 
 getPuzzle('2').then((puzzle) => {
    console.log(puzzle)
-}, (err) => {
-   console.log(`Error: ${err}`)
+}).catch((err) => {
+   console.log(err)
 }) 
 
 getCountry('US').then((country) => {
