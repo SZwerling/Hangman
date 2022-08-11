@@ -1,3 +1,5 @@
+// USING FETCH
+
 const getPuzzle = (wordCount) => {  //fetch has Promises built into it. Automatically returns a promise. So just use .then and .catch
    return fetch(`http://puzzle.mead.io/puzzle?wordCount=${wordCount}`).then((response) => { //using return here returns a promise
       if(response.status === 200){
@@ -10,23 +12,21 @@ const getPuzzle = (wordCount) => {  //fetch has Promises built into it. Automati
    })
 }
 
-// Making an http request
 
-const getCountry = (code) => new Promise((resolve, reject) => {
-   const request2 = new XMLHttpRequest();
-   request2.open("GET", "https://restcountries.com/v3.1/all");
-   request2.send();
-   request2.addEventListener("readystatechange", (e) => {
-      if (e.target.readyState === 4 && e.target.status === 200) {
-         const data = JSON.parse(e.target.responseText);
-         const specCountry = data.find((country) => country.altSpellings[0] === code);
-         resolve(specCountry);
-      } else if (e.target.readyState === 4) {
-         reject(`an error has taken place:  ${e.target.responseText}`);
+const getCountry = (code) => {
+   return fetch("https://restcountries.com/v3.1/all").then((response) => {
+      if(response.status === 200){
+         return response.json()
+      } else {
+         throw new Error('an error has taken place')
       }
-   });
-})
+   }).then((data) => {
+      let country =  data.filter((country) => country.altSpellings[0] === code)
+      return country[0].altSpellings[2]
+   })
+}
 
+// MAKING HTTP REQ USING XMLHttpRequest and new Promise instance
 // const getSuggestion = () => new Promise((resolve, reject) => {
 //    const request = new XMLHttpRequest();
 //    request.open("GET", "http://www.boredapi.com/api/activity");

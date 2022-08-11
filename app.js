@@ -20,18 +20,14 @@ getPuzzle('2').then((puzzle) => {
    console.log(err)
 }) 
 
-getCountry('US').then((country) => {
-   console.log(country.altSpellings[2])
-}, (err) => {
-   console.log(`Error; ${err}`)
+getCountry('FR').then((country) => {
+   console.log(country)
+}).catch((err) => {
+   console.log(err)
 })
+   
 
-// getSuggestion().then((suggestion) => {
-//    console.log(`Suggestion: ${suggestion.activity}.`)
-// }, (err) => {
-//    console.log(err)
-// })
-
+//in this fetch call we're not breaking it up into req and funtionc call like the others
 fetch('http://www.boredapi.com/api/activity', {}).then((response) => {
    if(response.status === 200){
       return response.json()
@@ -43,3 +39,11 @@ fetch('http://www.boredapi.com/api/activity', {}).then((response) => {
 }).catch((err) => {
    console.log(err)
 })
+
+
+
+// getSuggestion().then((suggestion) => {
+//    console.log(`Suggestion: ${suggestion.activity}.`)
+// }, (err) => {
+//    console.log(err)
+// })
