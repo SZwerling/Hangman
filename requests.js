@@ -26,6 +26,16 @@ const getCountry = (code) => {
    })
 }
 
+const getLocation = () => {
+   return fetch('https://ipinfo.io/json/?token=4014b33fc82808').then((response) => {
+      if(response.status === 200){
+         return response.json()
+      } else {
+         throw new Error('Something wrong went right.')
+      }
+   })
+}
+
 // MAKING HTTP REQ USING XMLHttpRequest and new Promise instance
 // const getSuggestion = () => new Promise((resolve, reject) => {
 //    const request = new XMLHttpRequest();
@@ -78,3 +88,5 @@ const getCountry = (code) => {
 //       }
 //    });
 // };
+
+
