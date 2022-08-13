@@ -1,15 +1,13 @@
 // USING FETCH
-
-const getPuzzle = (wordCount) => {  //fetch has Promises built into it. Automatically returns a promise. So just use .then and .catch
-   return fetch(`http://puzzle.mead.io/puzzle?wordCount=${wordCount}`).then((response) => { //using return here returns a promise
-      if(response.status === 200){
-         return response.json()
-      } else {
-         throw new Error('Unable to fetch puzzle')
-      }
-   }).then((data) => {
-      return data.puzzle  // this is the final promise that gets returned to function call in app.js
-   })
+// fetch has promises built in. Can use .then or asyn/await.
+const getPuzzle = async (wordCount) => { 
+   const response = await fetch(`http://puzzle.mead.io/puzzle?wordCount=${wordCount}`)
+   if(response.status === 200){
+      const data = await response.json()
+      return data.puzzle;
+   } else {
+      throw new Error('Unable to get puzzle.')
+   }
 }
 
 
@@ -35,6 +33,20 @@ const getLocation = () => {
       }
    })
 }
+
+
+// USING FETCH and .then on returned promise
+// const getPuzzle = (wordCount) => {  //fetch has Promises built into it. Automatically returns a promise. So just use .then and .catch
+//    return fetch(`http://puzzle.mead.io/puzzle?wordCount=${wordCount}`).then((response) => { //using return here returns a promise
+//       if(response.status === 200){
+//          return response.json()
+//       } else {
+//          throw new Error('Unable to fetch puzzle')
+//       }
+//    }).then((data) => {
+//       return data.puzzle  // this is the final promise that gets returned to function call in app.js
+//    })
+// }
 
 // MAKING HTTP REQ USING XMLHttpRequest and new Promise instance
 // const getSuggestion = () => new Promise((resolve, reject) => {
