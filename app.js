@@ -20,21 +20,21 @@ getPuzzle('2').then((puzzle) => {
    console.log(err)
 }) 
 
-// getCountry('FR').then((country) => {
-//    console.log(country)
-// }).catch((err) => {
-//    console.log(err)
-// })
-
-getLocation().then((data) => {
-   console.log(data.city)
-  return getCountry(data.country)
-}).then((response) => {
- 
-   console.log(response)
+getCurrentCountry().then((country) => {
+   console.log(country)
 }).catch((err) => {
    console.log(err)
 })
+
+// getLocation().then((data) => {
+//    console.log(data.city)
+//   return getCountry(data.country)
+// }).then((response) => {
+ 
+//    console.log(response)
+// }).catch((err) => {
+//    console.log(err)
+// })
    
 
 //in this fetch call we're not breaking it up into req and funtionc call like the others

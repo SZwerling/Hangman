@@ -25,10 +25,16 @@ const getCountry = async (code) => {
    }
 };
 
+const getCurrentCountry = async () => {
+   const location = await getLocation()
+   const country = await getCountry(location.country) // could just return here without await keyword
+   return country;
+}
+
 const getLocation = async () => {
    const response = await fetch("https://ipinfo.io/json/?token=4014b33fc82808");
    if (response.status === 200) {
-      return response.json(); //why not await response.json like above?
+      return response.json(); //Do not need await when returning
    } else {
       throw new Error("Something wrong went right.");
    }
