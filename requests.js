@@ -11,17 +11,15 @@ const getPuzzle = async (wordCount) => {
 }
 
 
-const getCountry = (code) => {
-   return fetch("https://restcountries.com/v3.1/all").then((response) => {
+const getCountry = async (code) => {
+   const response = await fetch("https://restcountries.com/v3.1/all")
       if(response.status === 200){
-         return response.json()
+         const data = await response.json()
+         const country = data.filter((country) => country.altSpellings[0] === code)
+         return country[0].altSpellings[2]
       } else {
          throw new Error('an error has taken place')
       }
-   }).then((data) => {
-      let country =  data.filter((country) => country.altSpellings[0] === code)
-      return country[0].altSpellings[2]
-   })
 }
 
 const getLocation = () => {
@@ -45,6 +43,22 @@ const getLocation = () => {
 //       }
 //    }).then((data) => {
 //       return data.puzzle  // this is the final promise that gets returned to function call in app.js
+//    })
+// }
+
+
+
+//GET COUNTRY USING .THEN
+// const getCountry = (code) => {
+//    return fetch("https://restcountries.com/v3.1/all").then((response) => {
+//       if(response.status === 200){
+//          return response.json()
+//       } else {
+//          throw new Error('an error has taken place')
+//       }
+//    }).then((data) => {
+//       let country =  data.filter((country) => country.altSpellings[0] === code)
+//       return country[0].altSpellings[2]
 //    })
 // }
 
