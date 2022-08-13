@@ -12,33 +12,33 @@ const getPuzzle = async (wordCount) => {
    }
 };
 
-const getCountry = async (code) => {
-   const response = await fetch("https://restcountries.com/v3.1/all");
-   if (response.status === 200) {
-      const data = await response.json();
-      const country = data.filter(
-         (country) => country.altSpellings[0] === code
-      );
-      return country[0].altSpellings[2];
-   } else {
-      throw new Error("an error has taken place");
-   }
-};
+// const getCountry = async (code) => {
+//    const response = await fetch("https://restcountries.com/v3.1/all");
+//    if (response.status === 200) {
+//       const data = await response.json();
+//       const country = data.filter(
+//          (country) => country.altSpellings[0] === code
+//       );
+//       return country[0].altSpellings[2];
+//    } else {
+//       throw new Error("an error has taken place");
+//    }
+// };
 
-const getCurrentCountry = async () => {
-   const location = await getLocation()
-   const country = await getCountry(location.country) // could just return here without await keyword
-   return country;
-}
+// const getCurrentCountry = async () => {
+//    const location = await getLocation()
+//    const country = await getCountry(location.country) // could just return here without await keyword
+//    return country;
+// }
 
-const getLocation = async () => {
-   const response = await fetch("https://ipinfo.io/json/?token=4014b33fc82808");
-   if (response.status === 200) {
-      return response.json(); //Do not need await when returning
-   } else {
-      throw new Error("Something wrong went right.");
-   }
-};
+// const getLocation = async () => {
+//    const response = await fetch("https://ipinfo.io/json/?token=4014b33fc82808");
+//    if (response.status === 200) {
+//       return response.json(); //Do not need await when returning
+//    } else {
+//       throw new Error("Something wrong went right.");
+//    }
+// };
 
 // USING FETCH and .then on returned promise
 // const getPuzzle = (wordCount) => {  //fetch has Promises built into it. Automatically returns a promise. So just use .then and .catch
