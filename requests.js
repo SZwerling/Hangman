@@ -1,37 +1,38 @@
 // USING FETCH
 // fetch has promises built in. Can use .then or asyn/await.
-const getPuzzle = async (wordCount) => { 
-   const response = await fetch(`http://puzzle.mead.io/puzzle?wordCount=${wordCount}`)
-   if(response.status === 200){
-      const data = await response.json()
+const getPuzzle = async (wordCount) => {
+   const response = await fetch(
+      `http://puzzle.mead.io/puzzle?wordCount=${wordCount}`
+   );
+   if (response.status === 200) {
+      const data = await response.json();
       return data.puzzle;
    } else {
-      throw new Error('Unable to get puzzle.')
+      throw new Error("Unable to get puzzle.");
    }
-}
-
+};
 
 const getCountry = async (code) => {
-   const response = await fetch("https://restcountries.com/v3.1/all")
-      if(response.status === 200){
-         const data = await response.json()
-         const country = data.filter((country) => country.altSpellings[0] === code)
-         return country[0].altSpellings[2]
-      } else {
-         throw new Error('an error has taken place')
-      }
-}
+   const response = await fetch("https://restcountries.com/v3.1/all");
+   if (response.status === 200) {
+      const data = await response.json();
+      const country = data.filter(
+         (country) => country.altSpellings[0] === code
+      );
+      return country[0].altSpellings[2];
+   } else {
+      throw new Error("an error has taken place");
+   }
+};
 
-const getLocation = () => {
-   return fetch('https://ipinfo.io/json/?token=4014b33fc82808').then((response) => {
-      if(response.status === 200){
-         return response.json()
-      } else {
-         throw new Error('Something wrong went right.')
-      }
-   })
-}
-
+const getLocation = async () => {
+   const response = await fetch("https://ipinfo.io/json/?token=4014b33fc82808");
+   if (response.status === 200) {
+      return response.json(); //why not await response.json like above?
+   } else {
+      throw new Error("Something wrong went right.");
+   }
+};
 
 // USING FETCH and .then on returned promise
 // const getPuzzle = (wordCount) => {  //fetch has Promises built into it. Automatically returns a promise. So just use .then and .catch
@@ -45,8 +46,6 @@ const getLocation = () => {
 //       return data.puzzle  // this is the final promise that gets returned to function call in app.js
 //    })
 // }
-
-
 
 //GET COUNTRY USING .THEN
 // const getCountry = (code) => {
@@ -74,9 +73,8 @@ const getLocation = () => {
 //       } else if(e.target.readyState === 4){
 //          reject(`an error has taken place: ${e.target.responseText}`)
 //       }
-//    }) 
+//    })
 // })
-
 
 //GET PUZZLE AS XMLHttpRequest, notice we must create a new Promise and resolve and reject
 // const getPuzzle = (wordCount) => new Promise((resolve, reject) => {
@@ -114,5 +112,3 @@ const getLocation = () => {
 //       }
 //    });
 // };
-
-
