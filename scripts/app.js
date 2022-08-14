@@ -12,8 +12,15 @@ window.addEventListener("keydown", function (e) {
 });
 
 const render = () => {
-   puzzleEl.textContent = game1.puzzle; //using getter in Hangman class
+   puzzleEl.innerHTML = "" //clearing html content so we can add the spans
    messageEl.textContent = game1.statusMessage; //using getter in Hangman class
+   //create new span element for each character
+   //each span text content is individual letter
+   game1.puzzle.split("").forEach((char) => {
+      const spanEl = document.createElement("span")
+      spanEl.textContent = char
+      puzzleEl.appendChild(spanEl)
+   })
 }
 
 const startGame = async() => {
