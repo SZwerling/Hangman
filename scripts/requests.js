@@ -2,7 +2,8 @@
 // fetch has promises built in. Can use .then or asyn/await.
 const getPuzzle = async (wordCount) => {
    const response = await fetch(
-      `http://puzzle.mead.io/puzzle?wordCount=${wordCount}`
+      "https://puzzle.mead.io/puzzle?wordCount=" + wordCount 
+      // `//puzzle.mead.io/puzzle?wordCount=${wordCount}`
    );
    if (response.status === 200) {
       const data = await response.json();

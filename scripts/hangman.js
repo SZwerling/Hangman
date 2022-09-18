@@ -44,7 +44,7 @@ class Hangman {
    }
    get statusMessage() { // of getters and setters chapter
       if (this.status === "playing") {
-         return `Guesses left: ${this.numGuesses}`;
+         return `guesses left: ${this.numGuesses}`;
       } else if (this.status === "failed!") {
          return `Nice try! The word was "${this.word.join("")}."`;
       } else if (this.status === "finished!") {
