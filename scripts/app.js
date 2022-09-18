@@ -3,24 +3,35 @@ const puzzleEl = document.querySelector("#word");
 const messageEl = document.querySelector("#message");
 const input = document.querySelector("#input");
 
-// window.addEventListener("keydown", function (e) {
-//    if (e.key.match(/^[a-z0-9 ]$/i)) {
-//       const guess = e.key;
-//       game1.makeGuess(guess);
-//       render()
-//    }
-// });
-
-input.addEventListener("input", function (e) {
-   const letter = e.target.value
-
-   if (letter.match(/^[a-z0-9 ]$/i)) {
-          const guess = letter;
+let isWide = window.matchMedia("(min-width: 769px)");
+function isInput(x) {
+   if (x.matches) {
+      window.addEventListener("keydown", function (e) {
+         if (e.key.match(/^[a-z0-9 ]$/i)) {
+            const guess = e.key;
             game1.makeGuess(guess);
             render()
-          }
-   input.value = ''
-});
+         }
+      });   
+   } else if(!x.matches) {
+      console.log("no match");
+      input.addEventListener("input", function (e) {
+         const letter = e.target.value;
+      
+         if (letter.match(/^[a-z0-9 ]$/i)) {
+            const guess = letter;
+            game1.makeGuess(guess);
+            render();
+         }
+         input.value = "";
+      });
+   }
+}
+isInput(isWide);
+isWide.addListener(isInput);
+
+
+
 
 const render = () => {
    puzzleEl.innerHTML = ""; //clearing html content so we can add the spans
@@ -28,23 +39,28 @@ const render = () => {
    //create new span element for each character
    //each span text content is individual letter
    game1.puzzle.split("").forEach((char) => {
-      const spanEl = document.createElement("span");
-      const empty = document.createElement("br")
+      // const spanEl = document.createElement("span");
+      
+      const span = document.createElement("span");
+      const linebreak = document.createElement("br");
+      span.textContent = char;
+     if(!isWide.matches && char === " "){
+       puzzleEl.appendChild(linebreak)
+     } else {
+      puzzleEl.appendChild(span)
+     }
+
      
-      puzzleEl.appendChild(spanEl);
-      if(char === " "){
-         puzzleEl.appendChild(empty)
-      } else {
-         spanEl.textContent = char;
-         puzzleEl.appendChild(spanEl)
-      } 
+      
+      
+   
    });
 };
 
 const startGame = async () => {
    const puzzle = await getPuzzle("2"); // getPuzzle exists in requests.js
    game1 = new Hangman(puzzle, 5);
-   console.log(puzzle)
+   console.log(puzzle);
    render();
 };
 

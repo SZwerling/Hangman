@@ -15,15 +15,17 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     height: 100vh;
     margin: auto;
     color: white;
-    background-image: url('../images/gallows.jpg');;
+    background-image: url('../images/gallows.jpg');
+   
 }
 
 .header {
     background-image: url('../images/gallows.jpg');
+    background-position: center;
     background-repeat: no-repeat;
     background-size: 100%;
     width: 100%;
@@ -37,7 +39,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
   
 
@@ -49,8 +51,6 @@
     /* border: 2px solid black; */
 }
 
-
-
 .main__message {
     font-family: 'Roboto', sans-serif;
     margin: .5rem;
@@ -58,10 +58,9 @@
     line-height: 1.2;
 }
 
-.main__button {
+.button {
     font-size: 1rem;
     font-weight: bold;
-    align-self: baseline;
     margin: .5rem;
     padding: .4rem;
     border-radius: 15px;
@@ -73,7 +72,17 @@
     border: 2px solid black;
     border-radius: 15px; 
     margin-bottom: 3rem;
+    height: 2rem;
+
 }
+
+
+@media only screen and (min-width: 769px) {
+    .input {
+        position: absolute;
+        left: -10000px;
+    }
+  }
 
 
 /* <a href="https://www.flaticon.com/free-icons/gallows" title="gallows icons">Gallows icons created by Freepik - Flaticon</a> */
