@@ -79,8 +79,7 @@
 
 @media only screen and (min-width: 769px) {
     .input {
-        position: absolute;
-        left: -10000px;
+        display: none;
     }
   }
 
