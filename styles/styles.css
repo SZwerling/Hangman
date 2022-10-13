@@ -19,12 +19,12 @@
     height: 100vh;
     margin: auto;
     color: white;
-    background-image: url('../images/gallows.jpg');
+    background-image: url(../images/gallows.jpg);
    
 }
 
 .header {
-    background-image: url('../images/gallows.jpg');
+    background-image: url(../images/gallows.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100%;
@@ -80,6 +80,32 @@
 @media only screen and (min-width: 769px) {
     .input {
         display: none;
+    }
+
+    .button {
+        margin-bottom: 5rem;
+    }
+
+
+
+    span {
+        letter-spacing: 1rem;
+       text-shadow: 0 0 2px black;
+       font-size: 3rem;
+    }
+  }
+
+  @media only screen and (min-width: 1025px) {
+    .header {
+        display: none;
+    }
+
+    .container {
+        background-size: cover;
+    }
+
+    .main__message {
+        text-shadow: 3px 3px 3px black;
     }
   }
 

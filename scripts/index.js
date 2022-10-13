@@ -1,7 +1,18 @@
+import Hangman from './hangman';
+import getPuzzle from './requests';
+import hanging from '../audio/hanging.mp3';
+import cheerAudio from '../audio/cheer.mp3'
+import '../styles/styles.css'
+
+
+
+
 let game1;
 const puzzleEl = document.querySelector("#word");
 const messageEl = document.querySelector("#message");
 const input = document.querySelector("#input");
+
+
 
 
 window.addEventListener("keydown", function handler(e) {
@@ -22,22 +33,29 @@ input.addEventListener("input", function (e) {
    input.value = "";
 });
 
-
 //watching window size and rendering for line break
 let isWide = window.matchMedia("(min-width: 769px)");
 window.addEventListener("resize", (e) => {
    render();
-   console.log("I change");
 });
 
+const hangAudio = new Audio(hanging)
+const cheer = new Audio(cheerAudio);
+
 const render = () => {
+   hangAudio.pause()
+   cheer.pause()
    puzzleEl.innerHTML = ""; //clearing html content so we can add the spans
    messageEl.textContent = game1.statusMessage; //using getter in Hangman class
+   if(game1.statusMessage.includes("Nice")) {
+      hangAudio.play()
+   }
+   if(game1.statusMessage.includes("Great")){
+      cheer.play()
+   }
    //create new span element for each character
    //each span text content is individual letter
    game1.puzzle.split("").forEach((char) => {
-      // const spanEl = document.createElement("span");
-
       const span = document.createElement("span");
       const linebreak = document.createElement("br");
       span.textContent = char;
@@ -52,7 +70,7 @@ const render = () => {
 const startGame = async () => {
    const puzzle = await getPuzzle("2"); // getPuzzle exists in requests.js
    game1 = new Hangman(puzzle, 5);
-   console.log(puzzle);
+   // console.log(puzzle);
    render();
 };
 

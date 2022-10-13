@@ -13,6 +13,8 @@ const getPuzzle = async (wordCount) => {
    }
 };
 
+export { getPuzzle as default }
+
 // const getCountry = async (code) => {
 //    const response = await fetch("https://restcountries.com/v3.1/all");
 //    if (response.status === 200) {
